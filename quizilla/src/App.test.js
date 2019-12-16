@@ -2,6 +2,10 @@ import React from 'react';
 import {expect} from 'chai';
 import {shallow} from 'enzyme';
 import App from './App';
+import {
+        Link,
+        BrowserRouter as Router
+      } from 'react-router-dom'
 
 describe('App.js', () => {
   let wrapper;
@@ -18,4 +22,10 @@ describe('App.js', () => {
   it('should have no other components', () => {
     expect(wrapper.find('.App')).to.not.be.blank();
   })
+
+  it('should render our navbar', () => {
+    expect(wrapper.find(Link)).to.match('.homeButton')
+  })
+
+
 })

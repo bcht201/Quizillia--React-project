@@ -12,8 +12,12 @@ function App() {
   return (
     <Router>   
       <div className="App">
-        <p>Hello World!</p>
+        <Link to="/quiz" className="homeButton"><h2>Quizilla</h2></Link>
       </div>
+      <Switch>
+        <Route path="/" component={LandingPage}/>
+        <Route path="/quiz" component={Quiz}/>
+      </Switch>
     </Router>
   );
 }
