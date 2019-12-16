@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
+import Quiz from '../../components/Quiz/Quiz'
 
 const LandingPage = ()=>{
     return (
         <div>
             <Link to="/quiz" className="quizButton">
-                <button>Start Quiz!</button>
+                <h2>Start Quiz!</h2>
             </Link>
+            {/* <Switch>
+                <Route path='/quiz' component={Quiz} />
+            </Switch> */}
         </div>);
 }
 

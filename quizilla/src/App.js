@@ -8,16 +8,17 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import LandingPage from './containers/LandingPage/LandingPage';
+import Quiz from './components/Quiz/Quiz'
 
 function App() {
   return (
     <Router>   
       <div className="App">
-        <Link to="/quiz" className="homeButton"><h2>Quizilla</h2></Link>
+        <Link to="/" className="homeButton"><h2>Quizilla</h2></Link>
       </div>
       <Switch>
-        <Route path="/" component={LandingPage}/>
-        {/* <Route path="/quiz" component={Quiz}/> */}
+        <Route path="/quiz" component={Quiz}/>
+        <Route exact path="/" component={LandingPage}/>
       </Switch>
     </Router>
   );

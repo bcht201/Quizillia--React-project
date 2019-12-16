@@ -14,13 +14,13 @@ describe('LandingPage', () =>{
         expect(wrapper.find('div')).to.have.lengthOf(1);
     });
 
-    it('contains a button', () =>{
-        expect(wrapper.find('button')).to.have.lengthOf(1);
-    });
-
-    it('contains a button with text Start Quiz', () =>{
-        expect(wrapper.find('button')).text('Start Quiz!');
-    });
+    //obsolete, no longer using button
+    // it('contains a button', () =>{
+    //     expect(wrapper.find('button')).to.have.lengthOf(1);
+    // });
+    // it('contains a button with text Start Quiz', () =>{
+    //     expect(wrapper.find('button')).text('Start Quiz!');
+    // });
 
     it('should render our navbar', () => {
         expect(wrapper.find(Link)).to.match('.quizButton');
