@@ -7,6 +7,7 @@ import {
   Switch
 } from 'react-router-dom';
 import './App.css';
+import LandingPage from './containers/LandingPage/LandingPage';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       </div>
       <Switch>
         <Route path="/" component={LandingPage}/>
-        <Route path="/quiz" component={Quiz}/>
+        {/* <Route path="/quiz" component={Quiz}/> */}
       </Switch>
     </Router>
   );
