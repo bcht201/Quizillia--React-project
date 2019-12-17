@@ -17,7 +17,8 @@ class Quiz extends React.Component{
     }
 
     apiCall = () => {
-        axios.get(`https://opentdb.com/api.php?amount=10&category=20&difficulty=hard`)
+        console.log(`https://opentdb.com/api.php?amount=10&category=${this.props.catID}`)
+        axios.get(`https://opentdb.com/api.php?amount=10&category=${this.props.catID}&difficulty=hard`)
         .then(response => {
             console.log(response.data.results)
             this.setState({data: response.data.results})})

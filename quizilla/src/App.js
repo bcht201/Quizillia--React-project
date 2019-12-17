@@ -27,7 +27,7 @@ class App extends React.Component {
       </div>
       <Switch>
         <Route path='/quiz' > 
-          {this.state.category ? <Quiz /> : <Redirect to='/'/> }
+          {this.state.category ? <Quiz catID={this.state.category}/> : <Redirect to='/'/> }
         </Route>
         <Route exact path="/" render={(props) => <LandingPage {...props} pickCat={this.launchQuiz}/>} />
       </Switch>
