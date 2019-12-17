@@ -13,7 +13,7 @@ const GameBox = (props) => {
             <h3>{props.gameInfo.question}</h3>
             
             {answers.map(answer => {
-                return <button value = {answer} onClick={(event)=> onClickHandler(event)}>{answer}</button>
+                return <button value = {answer} id = {answer} onClick={(event)=> onClickHandler(event)}>{answer}</button>
             })}
         </div>
     )
