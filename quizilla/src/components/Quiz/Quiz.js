@@ -35,13 +35,23 @@ class Quiz extends React.Component{
         
     }
 
+    generateQuestion = () => {
+        if(this.state.index === 10) {
+        return(<p>You got {this.state.score}/10 !&#128513;</p>)
+        }
+        else if(this.state.data.length !== 0) { 
+            return( <GameBox gameInfo={this.state.data[this.state.index]} 
+            calculateScore = {this.calculateScore}/>) 
+        }
+        else {
+         return;
+       }
+    }
+
     render() {
         return (
             <div>
-                {this.state.data.length === 0 ? null : 
-                <GameBox gameInfo={this.state.data[this.state.index]} calculateScore = {this.calculateScore}/>}
-                
-                
+                {this.generateQuestion()}
             </div>
             
         )

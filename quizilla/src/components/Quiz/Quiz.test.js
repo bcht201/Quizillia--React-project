@@ -5,10 +5,13 @@ import {
 } from 'enzyme';
 import Quiz from './Quiz'
 import GameBox from '../GameBox/GameBox'
+import axios from 'axios'
+
+jest.mock('axios')
 
 describe('Quiz.js', () => {
     let wrapper;
-    let score = Quiz.calculateScore;
+    
 
     beforeEach(() => {
         wrapper= shallow(<Quiz />);
@@ -21,9 +24,15 @@ describe('Quiz.js', () => {
     it('should not render GameBox', () => {
         expect(wrapper.find('GameBox').length).toEqual(0);
     })
-
     
-        
+    // We must call spyOn before we shallow render or mount
+    it('should do an api call', () => {
+        const getSpy = jest.spyOn(axios, 'get');
+        wrapper= shallow(<Quiz />);
+        expect(getSpy).toHaveBeenCalled();
+    })
+    
+    
 })
 
 

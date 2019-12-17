@@ -3,7 +3,8 @@ import {
         shallow, 
         mount
         } from 'enzyme';
-import GameBox from './GameBox'
+import GameBox from './GameBox';
+import Quiz from './../Quiz/Quiz';
 
 describe('GameBox.js', () => {
     let wrapper;
@@ -21,8 +22,9 @@ describe('GameBox.js', () => {
         "Cyprus"
         ]
         }
-        wrap = mount(<GameBox gameInfo = {mockData} />);
-        wrapper= shallow(<GameBox gameInfo = {mockData} />);
+       
+       
+        wrapper= shallow(<GameBox gameInfo = {mockData}   />);
     })
     //p tag should not render without being called
     it('to have a <div />', () => {
@@ -34,11 +36,12 @@ describe('GameBox.js', () => {
     })
 
     it('should call calculateScore on click', ()=> {
-        let button = wrap.find('#Crete');
+        // const fakeCalc = jest.spyOn(Quiz.prototype, 'calculateScore');
+        wrap = shallow(<GameBox gameInfo = {mockData} calculateScore={fakeCalc}/>);
+        const instance = wrap.instance()
+        let button = wrapper.find('#Crete');
         button.simulate('click');
-        expect(wrap.state('index')).toEqual(1);
+        expect(Quiz.prototype.calculateScore).toHaveBeenCalledTimes(1);
     })
- 
-    
 })
 
