@@ -8,11 +8,15 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import LandingPage from './containers/LandingPage/LandingPage';
-import Quiz from './components/Quiz/Quiz'
+import Quiz from './components/Quiz/Quiz';
+import axios from 'axios';
 
-function App() {
-  return (
-    <Router>   
+class App extends React.Component {
+  
+
+  render(){
+    return (
+      <Router>   
       <div className="App">
         <Link to="/" className="homeButton"><h2>Quizilla</h2></Link>
       </div>
@@ -21,7 +25,8 @@ function App() {
         <Route exact path="/" component={LandingPage}/>
       </Switch>
     </Router>
-  );
+    );
+  }
 }
 
 export default App;
