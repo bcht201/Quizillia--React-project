@@ -37,7 +37,8 @@ class Quiz extends React.Component{
 
     generateQuestion = () => {
         if(this.state.index === 10) {
-        return(<p>You got {this.state.score}/10 !&#128513;</p>)
+           let emojis = [<p>&#128563;</p>, <p>&#128513;</p> ];
+        return(<p> You got {this.state.score}/10 {this.state.score < 0? emojis[0] : emojis[1]} </p>)
         }
         else if(this.state.data.length !== 0) { 
             return( <GameBox gameInfo={this.state.data[this.state.index]} 
