@@ -23,12 +23,23 @@ class Quiz extends React.Component{
             this.setState({data: response.data.results})})
     }
 
+    calculateScore = (answer) =>{
+        console.log("I calculated the score");
+        let points;
+        if(answer === this.state.data[this.state.index].correct_answer){
+            points = 1;
+        } else{
+            points = -1;
+        }
+        this.setState(prevState => {return ({score: prevState.score + points, index: prevState.index + 1})})
+        
+    }
+
     render() {
-        // console.log(this.state.data.results[0].question);
         return (
             <div>
                 {this.state.data.length === 0 ? null : 
-                <GameBox gameInfo={this.state.data[this.state.index]}/>}
+                <GameBox gameInfo={this.state.data[this.state.index]} calculateScore = {this.calculateScore}/>}
                 
                 
             </div>
