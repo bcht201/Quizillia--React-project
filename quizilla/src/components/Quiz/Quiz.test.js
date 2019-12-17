@@ -20,11 +20,7 @@ describe('Quiz.js', () => {
     it('p tag is not rendered', () => {
         expect(wrapper.find('p')).to.not.exist
     })
-    //api call test
-    it('should render a p tag', () => {
-        let component = mount(<Quiz />)
-        expect(component.find('p')).to.exist
-    })    
+ 
     
 })
 

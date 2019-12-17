@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import GameBox from '../GameBox/GameBox';
 
 class Quiz extends React.Component{
     constructor(props) {
@@ -17,8 +18,9 @@ class Quiz extends React.Component{
 
     apiCall = () => {
         axios.get(`https://opentdb.com/api.php?amount=10&category=20&difficulty=hard`)
-        .then(response => this.setState({data: response}))
-
+        .then(response => {
+            console.log(response.data.results)
+            this.setState({data: response.data.results})})
     }
 
     render() {
@@ -26,8 +28,9 @@ class Quiz extends React.Component{
         return (
             <div>
                 {this.state.data.length === 0 ? null : 
-                <p>{this.state.data.results[0].question}</p>}
-
+                <GameBox gameInfo={this.state.data[this.state.index]}/>}
+                
+                
             </div>
             
         )
