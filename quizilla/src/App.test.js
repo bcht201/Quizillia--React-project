@@ -1,11 +1,12 @@
 import React from 'react';
-import {expect} from 'chai';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import App from './App';
 import {
         Link,
-        BrowserRouter as Router
+        BrowserRouter as Router,
+        MemoryRouter
       } from 'react-router-dom'
+import LandingPage from './containers/LandingPage/LandingPage';
 
 describe('App.js', () => {
   let wrapper;
@@ -15,16 +16,24 @@ describe('App.js', () => {
   })
 
   it('contains only one element with classname App', () => {
-    expect(wrapper.find('.App')).to.have.lengthOf(1);
+    expect(wrapper.find('.App').length).toEqual(1);
   })
 
-  // app is not an empty div
-  it('should have no other components', () => {
-    expect(wrapper.find('.App')).to.not.be.blank();
+  it('should render our Link in a navbar', () => {
+    expect(wrapper.find(Link).length).toEqual(1);
   })
 
-  it('should render our navbar', () => {
-    expect(wrapper.find(Link)).to.match('.homeButton')
+  it('the link should have a classname ', () => {
+    expect(wrapper.find(Link).hasClass('homeButton')).toEqual(true);
+  })
+
+  it('should render landing page by default', () => {
+    let component = mount(
+    <MemoryRouter>
+       <App />
+    </MemoryRouter>
+   );
+    expect(component.find(LandingPage)).toHaveLength(1)
   })
 
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import {
   BrowserRouter as Router, 
   Route, 
@@ -10,7 +9,6 @@ import {
 import './App.css';
 import LandingPage from './containers/LandingPage/LandingPage';
 import Quiz from './components/Quiz/Quiz';
-import axios from 'axios';
 
 class App extends React.Component {
   state = {category: null};
@@ -29,7 +27,9 @@ class App extends React.Component {
         <Route path='/quiz' > 
           {this.state.category ? <Quiz catID={this.state.category}/> : <Redirect to='/'/> }
         </Route>
-        <Route exact path="/" render={(props) => <LandingPage {...props} pickCat={this.launchQuiz}/>} />
+        <Route 
+        exact path="/" 
+        render={(props) => <LandingPage {...props} pickCat={this.launchQuiz}/>} />
       </Switch>
     </Router>
     );

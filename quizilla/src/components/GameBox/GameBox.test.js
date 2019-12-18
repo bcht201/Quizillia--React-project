@@ -35,13 +35,12 @@ describe('GameBox.js', () => {
         expect(wrapper.find('button').length).toEqual(4);
     })
 
-    it('should call calculateScore on click', ()=> {
-        // const fakeCalc = jest.spyOn(Quiz.prototype, 'calculateScore');
-        wrap = shallow(<GameBox gameInfo = {mockData} calculateScore={fakeCalc}/>);
-        const instance = wrap.instance()
-        let button = wrapper.find('#Crete');
-        button.simulate('click');
-        expect(Quiz.prototype.calculateScore).toHaveBeenCalledTimes(1);
+    it('buttons should have answers as value', () => {
+        expect(wrapper.find('#Crete').text()).to.equal('Crete')
     })
+
+    it('should render the question', ()=> {
+       expect(wrapper.contains('<h3>Talos, the mythical giant bronze man, was the protector of which island?</h3>'));
+    });
 })
 
