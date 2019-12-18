@@ -47,7 +47,7 @@ class LandingPage extends React.Component{
 
     onClickHandler =() => {
         if(this.state.chosen_category && this.state.difficulty){
-            this.props.pickCat(this.state.chosen_category, this.state.max_questions);
+            this.props.pickCat(this.state.chosen_category, this.state.max_questions, this.state.difficulty);
         };
     }
 

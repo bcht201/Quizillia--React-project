@@ -13,12 +13,21 @@ import Quiz from './components/Quiz/Quiz';
 class App extends React.Component {
   state = {
     category: null,
-    number_of_questions: null
+    number_of_questions: null,
+    difficulty: null
   };
 
-  launchQuiz = (catId, number) => {
-    this.setState({category: catId, number_of_questions: number})
+  launchQuiz = (catId, number, diff) => {
+    this.setState({
+      category: catId, 
+      number_of_questions: this.setTotalQuestions(number),
+      difficulty: diff
+    })
   }
+
+  setTotalQuestions = (number) =>{
+    return number > 10 ?  10 : number;
+}
 
   resetState = () => {
     this.setState({category: null})
@@ -32,7 +41,7 @@ class App extends React.Component {
       </div>
       <Switch>
         <Route path='/quiz' > 
-          {this.state.category ? <Quiz catID={this.state.category}/> : <Redirect to='/'/> }
+          {this.state.category ? <Quiz catID={this.state.category} maxNumberOfQuestions={this.state.number_of_questions} diff={this.state.difficulty}/> : <Redirect to='/'/> }
         </Route>
         <Route 
         exact path="/" 

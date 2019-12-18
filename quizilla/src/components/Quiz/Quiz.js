@@ -16,9 +16,11 @@ class Quiz extends React.Component{
         this.apiCall();
     }
 
+
+
     apiCall = () => {
-        console.log(`https://opentdb.com/api.php?amount=10&category=${this.props.catID}`)
-        axios.get(`https://opentdb.com/api.php?amount=10&category=${this.props.catID}&difficulty=hard`)
+        console.log(`${this.state.totalQuestions}`);
+        axios.get(`https://opentdb.com/api.php?amount=${this.props.maxNumberOfQuestions}&category=${this.props.catID}&difficulty=${this.props.diff}`)
         .then(response => {
             console.log(response.data.results)
             this.setState({data: response.data.results})})
@@ -37,16 +39,16 @@ class Quiz extends React.Component{
     }
 
     generateQuestion = () => {
-        if(this.state.index === 10) {
+        if(this.state.index === this.props.maxNumberOfQuestions) {
            let emojis = [<p>&#128563;</p>, <p>&#128513;</p> ];
-        return(<p> You got {this.state.score}/10 {this.state.score < 0? emojis[0] : emojis[1]} </p>)
+            return(<p> You got {this.state.score}/{this.props.maxNumberOfQuestions} {this.state.score < 0? emojis[0] : emojis[1]} </p>)
         }
         else if(this.state.data.length !== 0) { 
             return( <GameBox gameInfo={this.state.data[this.state.index]} 
             calculateScore = {this.calculateScore}/>) 
         }
         else {
-         return;
+            return;
        }
     }
 
