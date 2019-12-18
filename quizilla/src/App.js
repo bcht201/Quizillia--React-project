@@ -33,6 +33,14 @@ class App extends React.Component {
     this.setState({category: null})
   }
 
+  quizRoute = () => {
+    if (this.state.category && this.state.difficulty) {
+      return <Quiz catID={this.state.category} maxNumberOfQuestions={this.state.number_of_questions} diff={this.state.difficulty}/>
+    } else {
+      return <Redirect to='/'/> 
+    }
+  }
+
   render(){
     return (
       <Router>   
@@ -41,7 +49,7 @@ class App extends React.Component {
       </div>
       <Switch>
         <Route path='/quiz' > 
-          {this.state.category ? <Quiz catID={this.state.category} maxNumberOfQuestions={this.state.number_of_questions} diff={this.state.difficulty}/> : <Redirect to='/'/> }
+          {this.quizRoute()}
         </Route>
         <Route 
         exact path="/" 
