@@ -1,15 +1,14 @@
 import React from 'react';
 import {
-        shallow, 
-        mount
+        shallow,
         } from 'enzyme';
 import GameBox from './GameBox';
 import Quiz from './../Quiz/Quiz';
+import renderer from 'react-test-renderer'
 
 describe('GameBox.js', () => {
     let wrapper;
     let mockData;
-    let wrap;
 
     beforeEach(() => {
         mockData = {"category": "Mythology",
@@ -24,8 +23,15 @@ describe('GameBox.js', () => {
         }
        
        
-        wrapper= shallow(<GameBox gameInfo = {mockData}   />);
+        wrapper= shallow(<GameBox gameInfo = {mockData}  />);
     })
+
+    it('should match snapshot', () => {
+        const tree = renderer.create(<GameBox gameInfo = {mockData} />).toJSON();
+        expect(tree).toMatchSnapshot();
+    })
+
+
     //p tag should not render without being called
     it('to have a <div />', () => {
         expect(wrapper.find('div').length).toEqual(1);
@@ -35,9 +41,11 @@ describe('GameBox.js', () => {
         expect(wrapper.find('button').length).toEqual(4);
     })
 
-    it('buttons should have answers as value', () => {
-        expect(wrapper.find('#Crete').text()).to.equal('Crete')
+    it('should have buttons with answers as the value', () => {
+        expect(wrapper.find('#Crete').text()).toEqual('Crete');
     })
+
+    
 
     it('should render the question', ()=> {
        expect(wrapper.contains('<h3>Talos, the mythical giant bronze man, was the protector of which island?</h3>'));

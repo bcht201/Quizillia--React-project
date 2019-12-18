@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameBox.js should match snapshot 1`] = `
+<div>
+  <h3>
+    Talos, the mythical giant bronze man, was the protector of which island?
+  </h3>
+  <button
+    id="Crete"
+    onClick={[Function]}
+    value="Crete"
+  >
+    Crete
+  </button>
+  <button
+    id="Cyprus"
+    onClick={[Function]}
+    value="Cyprus"
+  >
+    Cyprus
+  </button>
+  <button
+    id="Sardinia"
+    onClick={[Function]}
+    value="Sardinia"
+  >
+    Sardinia
+  </button>
+  <button
+    id="Sicily"
+    onClick={[Function]}
+    value="Sicily"
+  >
+    Sicily
+  </button>
+</div>
+`;
+
