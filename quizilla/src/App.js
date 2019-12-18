@@ -11,7 +11,10 @@ import LandingPage from './containers/LandingPage/LandingPage';
 import Quiz from './components/Quiz/Quiz';
 
 class App extends React.Component {
-  state = {category: null};
+  state = {
+    category: null,
+    number_of_questions: null
+  };
 
   launchQuiz = (catId, number) => {
     this.setState({category: catId, number_of_questions: number})

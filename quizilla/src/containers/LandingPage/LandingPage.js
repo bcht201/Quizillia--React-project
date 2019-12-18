@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
-import {Select, MenuItem, InputLabel} from '@material-ui/core';
+import {Select, MenuItem} from '@material-ui/core';
 import axios from 'axios';
 
 class LandingPage extends React.Component{
@@ -19,7 +19,10 @@ class LandingPage extends React.Component{
 
     componentDidUpdate = (prevProp, prevState) => {
         if(prevState.chosen_category !== this.state.chosen_category){
-        this.getQuestionCount(this.state.chosen_category)
+            this.getQuestionCount(this.state.chosen_category);
+        }
+        if(prevState.difficulty !== this.state.difficulty){
+            this.assignQuestionCount(this.state.difficulty);
         }
     }
 
@@ -30,12 +33,11 @@ class LandingPage extends React.Component{
     
     getQuestionCount= (num) => {
         axios.get(`https://opentdb.com/api_count.php?category=${num}`)
-        .then(response => this.setState({question_count_data: response.data.category_question_count}, () => {this.assignQuestionCount(this.state.difficulty)}))
+        .then(response => this.setState({question_count_data: response.data.category_question_count}))
 
     }
 
     assignQuestionCount = (difficulty) => {
-        console.log(difficulty)
         this.setState({max_questions: this.state.question_count_data[`total_${difficulty}_question_count`]})
     }
 
@@ -45,7 +47,8 @@ class LandingPage extends React.Component{
 
     onClickHandler =() => {
         if(this.state.chosen_category && this.state.difficulty){
-            this.props.pickCat(this.state.chosen_category)};
+            this.props.pickCat(this.state.chosen_category, this.state.max_questions);
+        };
     }
 
     render(){
