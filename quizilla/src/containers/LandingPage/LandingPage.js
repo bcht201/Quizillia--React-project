@@ -24,7 +24,6 @@ class LandingPage extends React.Component{
         .then(response => console.log(response));
     }
 
-
     handleChange = (event) => {
         this.setState({chosen_category: event.target.value});
     }
