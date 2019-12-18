@@ -7,11 +7,20 @@ class LandingPage extends React.Component{
     state = {
         categories:[],
         chosen_category: null, 
-        difficulty: null   
+        difficulty: null,
+        question_count_data: null,
+        max_questions: null
     };
-
+    
     componentDidMount(){
-        this.getCategories()
+        this.props.reset();
+        this.getCategories();
+    }
+
+    componentDidUpdate = (prevProp, prevState) => {
+        if(prevState.chosen_category !== this.state.chosen_category){
+        this.getQuestionCount(this.state.chosen_category)
+        }
     }
 
     getCategories = () => {
@@ -21,15 +30,22 @@ class LandingPage extends React.Component{
     
     getQuestionCount= (num) => {
         axios.get(`https://opentdb.com/api_count.php?category=${num}`)
-        .then(response => console.log(response));
+        .then(response => this.setState({question_count_data: response.data.category_question_count}, () => {this.assignQuestionCount(this.state.difficulty)}))
+
+    }
+
+    assignQuestionCount = (difficulty) => {
+        console.log(difficulty)
+        this.setState({max_questions: this.state.question_count_data[`total_${difficulty}_question_count`]})
     }
 
     handleChange = (event) => {
-        this.setState({chosen_category: event.target.value});
+        this.setState({[event.target.name]: event.target.value});
     }
 
     onClickHandler =() => {
-        this.state.chosen_category && this.props.pickCat(this.state.chosen_category);
+        if(this.state.chosen_category && this.state.difficulty){
+            this.props.pickCat(this.state.chosen_category)};
     }
 
     render(){
@@ -38,19 +54,32 @@ class LandingPage extends React.Component{
                 <Link to="/quiz" className="quizButton" onClick={this.onClickHandler}>
                     <h2>Start Quiz!</h2>
                 </Link>
-                <InputLabel id="demo-simple-select-label">Pick a category</InputLabel>
                 <Select
                     labelId="demo-simple-select-placeholder-label-label"
                     id="demo-simple-select-placeholder-label"
                     displayEmpty
                     value= {this.state.category}
                     onChange= {(event) => this.handleChange(event)}
+                    name="chosen_category"
                     >
+                        <MenuItem disabled>Pick a category</MenuItem>
                     {this.state.categories.map(category =>{
                         return(<MenuItem value={category.id}>{category.name}</MenuItem>)
                     })}
                 </Select>
-           
+                <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                    value= {this.state.category}
+                    onChange= {(event) => this.handleChange(event)}
+                    name="difficulty"
+                    >
+                        <MenuItem disabled>Pick a difficulty</MenuItem>
+                        <MenuItem value="easy">Easy</MenuItem>
+                        <MenuItem value="medium">Medium</MenuItem>
+                        <MenuItem value="hard">Hard</MenuItem>
+                </Select>
             </div>
         )
     }

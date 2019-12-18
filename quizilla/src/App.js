@@ -13,8 +13,12 @@ import Quiz from './components/Quiz/Quiz';
 class App extends React.Component {
   state = {category: null};
 
-  launchQuiz = (catId) => {
-    this.setState({category: catId})
+  launchQuiz = (catId, number) => {
+    this.setState({category: catId, number_of_questions: number})
+  }
+
+  resetState = () => {
+    this.setState({category: null})
   }
 
   render(){
@@ -29,7 +33,7 @@ class App extends React.Component {
         </Route>
         <Route 
         exact path="/" 
-        render={(props) => <LandingPage {...props} pickCat={this.launchQuiz}/>} />
+        render={(props) => <LandingPage {...props} pickCat={this.launchQuiz} reset={this.resetState}/>} />
       </Switch>
     </Router>
     );
