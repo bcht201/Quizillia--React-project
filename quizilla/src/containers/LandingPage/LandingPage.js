@@ -40,7 +40,7 @@ class LandingPage extends React.Component{
 
     assignQuestionCount = (difficulty) => {
         this.setState({max_questions: this.state.question_count_data[`total_${difficulty}_question_count`]}, () => {
-            this.props.pickCat(this.state.chosen_category, this.state.max_questions, this.state.difficulty);
+            this.props.pickCat(this.state.chosen_category, this.state.max_questions, this.state.difficulty, this.state.numberOfPlayers);
         })
     }
 

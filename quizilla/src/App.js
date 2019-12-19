@@ -14,14 +14,16 @@ class App extends React.Component {
   state = {
     category: null,
     number_of_questions: null,
-    difficulty: null
+    difficulty: null,
+    players: null
   };
 
-  launchQuiz = (catId, number, diff) => {
+  launchQuiz = (catId, number, diff, numOfPlayer) => {
     this.setState({
       category: catId, 
       number_of_questions: this.setTotalQuestions(number),
-      difficulty: diff
+      difficulty: diff,
+      players : numOfPlayer
     })
   }
 
@@ -34,8 +36,8 @@ class App extends React.Component {
   }
 
   quizRoute = () => {
-    if (this.state.category && this.state.difficulty) {
-      return <Quiz catID={this.state.category} maxNumberOfQuestions={this.state.number_of_questions} diff={this.state.difficulty}/>
+    if (this.state.category && this.state.difficulty && this.state.players) {
+      return <Quiz catID={this.state.category} maxNumberOfQuestions={this.state.number_of_questions} diff={this.state.difficulty} players = {this.state.players}/>
     } else {
       return <Redirect to='/'/> 
     }
