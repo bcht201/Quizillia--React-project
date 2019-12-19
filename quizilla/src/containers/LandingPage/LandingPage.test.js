@@ -4,6 +4,8 @@ import LandingPage from './LandingPage';
 import { Link } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
+import {Select, MenuItem} from '@material-ui/core';
+
 describe('LandingPage', () =>{
     let wrapper;
     const mockReset = jest.fn();
@@ -34,6 +36,64 @@ describe('LandingPage', () =>{
         link.simulate('click');
         expect(global.window.location.pathname).toEqual('/');
     });
+
+    //STEPS:
+    //create mock function 
+    //shallow rendered LandingPage and gave it a prop called mockEventHandler
+    //simulated a 'change' and on said change gave it mock values
+    //now we write expect state to see if mock values are passed on into state after change
+    // it('Should call pickCat (prop function) after setting state', () => {
+    //     const mockEventHandler = jest.fn();
+    //     const mockReset = jest.fn();
+    //     const wrapper2 = mount(<Router>
+    //         <LandingPage handleChange={mockEventHandler} reset = {mockReset} />
+    //         </Router>)
+    //     const event = {target: {
+    //         name: 'chosen_category',
+    //         value: 'val'
+    //     }}
+    //     // wrapper.setProps({onChange : mockEventHandler});
+    //     // wrapper.find('#categoryDropdown').simulate('change', {target: {value: ["val"], name: ["chosen_category"]}})
+    //     wrapper2.find('#categoryDropdown').simulate('change', event);
+
+    //     // wrapper.update();
+    //     // expect(wrapper.state().chosen_category).toEqual('val');
+    //     expect(mockEventHandler.calledOnce).toBe(true);
+    // })
+
+    it('should change setstate after onchange', () =>{
+        const fakeCatCall = jest.fn();
+        const mockEvent = {
+            target : {
+                name: "chosen_category",
+                value : "test"
+            }
+        };
+        const expected = {
+            categories:[],
+            chosen_category: "test", 
+            difficulty: null,
+            question_count_data: null,
+            max_questions: null,
+            numberOfPlayers: 1
+        };
+        wrapper.instance().handleChange(mockEvent);
+        expect(wrapper.state()).toEqual(expected);
+    })
+
+    // it('should display menu items after Api call', () => {
+    //     loadData = async () => {
+
+    //     }
+    // })
+
+    
+
+    // it('should call pickCat propFunction after setting the state', () => {
+    //     wrapper.update();
+    //     wrapper.
+    //     expect(wrapper.find('MenuItem').text()).toEqual('Pick a Category');
+    // })
 
     it('should redirect to /quiz if a category is selected', () =>{
         // const wrapper2 = mount(<Router><LandingPage/></Router>);
