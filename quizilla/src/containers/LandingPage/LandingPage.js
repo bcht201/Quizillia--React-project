@@ -2,7 +2,8 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import {Select, MenuItem} from '@material-ui/core';
 import axios from 'axios';
-import './LandingPage.css'
+import './LandingPage.css';
+import logo from  './logo.png';
 
 class LandingPage extends React.Component{
     state = {
@@ -48,6 +49,7 @@ class LandingPage extends React.Component{
     render(){
         return (
             <div className="LandingPageContainer">
+                    <img src={logo} alt="Logo" />
                 <div className="GameDropdown">
                     <Select
                         labelId="demo-simple-select-placeholder-label-label"

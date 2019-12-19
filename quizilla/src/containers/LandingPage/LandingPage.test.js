@@ -4,7 +4,6 @@ import LandingPage from './LandingPage';
 import { Link } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 describe('LandingPage', () =>{
     let wrapper;
     beforeEach(()=>{
