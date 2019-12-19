@@ -8,6 +8,11 @@ a {
   color: black
 }
 
+.homeButton{
+  font-family: 'Lakki Reddy', cursive;
+  font-size: 30px;
+}
+
 .homeButton:hover {
   color: yellowgreen;
 }
