@@ -8,12 +8,18 @@ class Quiz extends React.Component{
         this.state= {
             data: [],
             index: 0,
-            score: 0
+            score: []
         }
     }
 
     componentDidMount() {
+        this.createScoreArray()
         this.apiCall();
+    }
+
+    createScoreArray = () => {
+        const numberOfPlayers = Number(this.props.players)
+        this.setState({score: Array(numberOfPlayers).fill(0)})
     }
 
     apiCall = () => {
@@ -32,7 +38,6 @@ class Quiz extends React.Component{
             points = -1;
         }
         this.setState(prevState => {return ({score: prevState.score + points, index: prevState.index + 1})})
-        
     }
 
     generateQuestion = () => {
