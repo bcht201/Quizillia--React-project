@@ -9,7 +9,6 @@ class Quiz extends React.Component{
             data: [],
             index: 0,
             score: [],
-            currentPlayer: 0,
             numberOfPlayers: Number(this.props.players),
             counter: 0
             
@@ -42,7 +41,12 @@ class Quiz extends React.Component{
         }
         this.setState(prevState => {
             let newScore = [...prevState.score];
-            let questionIncrement = prevState.counter % this.state.numberOfPlayers 
+            let questionIncrement;
+            if(this.state.numberOfPlayers === 1) {
+                questionIncrement = 1;
+            } else {
+                questionIncrement = prevState.counter % this.state.numberOfPlayers
+            }
             newScore[this.state.counter % this.state.numberOfPlayers] += points;
             return ({score: newScore, counter: prevState.counter + 1, index: prevState.index + questionIncrement})})
     }
@@ -67,8 +71,11 @@ class Quiz extends React.Component{
     }
 
     generateNextQuestion = () => {
-        return( <GameBox gameInfo={this.state.data[this.state.index]} 
-            calculateScore = {this.calculateScore}/>) 
+        return( 
+            <div>
+                <p>Current Player: {this.state.counter % this.state.numberOfPlayers + 1}</p>
+                <GameBox gameInfo={this.state.data[this.state.index]} calculateScore = {this.calculateScore}/>
+            </div>) 
     }
 
     render() {

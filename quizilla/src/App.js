@@ -32,7 +32,13 @@ class App extends React.Component {
 }
 
   resetState = () => {
-    this.setState({category: null})
+    this.setState({
+      category: null,
+      number_of_questions: null,
+      difficulty: null,
+      players: null
+    });
+
   }
 
   quizRoute = () => {
