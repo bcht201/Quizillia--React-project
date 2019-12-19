@@ -1,38 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GameBox.js should match snapshot 1`] = `
-<div>
+<div
+  className="questionContainer"
+>
   <h3>
     Talos, the mythical giant bronze man, was the protector of which island?
   </h3>
-  <button
-    id="Crete"
-    onClick={[Function]}
-    value="Crete"
+  <div
+    className="buttonContainer"
   >
-    Crete
-  </button>
-  <button
-    id="Cyprus"
-    onClick={[Function]}
-    value="Cyprus"
+    <button
+      className="answerButton"
+      id="Crete"
+      onClick={[Function]}
+      value="Crete"
+    >
+      Crete
+    </button>
+  </div>
+  <div
+    className="buttonContainer"
   >
-    Cyprus
-  </button>
-  <button
-    id="Sardinia"
-    onClick={[Function]}
-    value="Sardinia"
+    <button
+      className="answerButton"
+      id="Cyprus"
+      onClick={[Function]}
+      value="Cyprus"
+    >
+      Cyprus
+    </button>
+  </div>
+  <div
+    className="buttonContainer"
   >
-    Sardinia
-  </button>
-  <button
-    id="Sicily"
-    onClick={[Function]}
-    value="Sicily"
+    <button
+      className="answerButton"
+      id="Sardinia"
+      onClick={[Function]}
+      value="Sardinia"
+    >
+      Sardinia
+    </button>
+  </div>
+  <div
+    className="buttonContainer"
   >
-    Sicily
-  </button>
+    <button
+      className="answerButton"
+      id="Sicily"
+      onClick={[Function]}
+      value="Sicily"
+    >
+      Sicily
+    </button>
+  </div>
 </div>
 `;
-

@@ -33,19 +33,17 @@ describe('GameBox.js', () => {
 
 
     //p tag should not render without being called
-    it('to have a <div />', () => {
-        expect(wrapper.find('div').length).toEqual(1);
+    it('to have 1 container <div /> and 1 for each answer button', () => {
+        expect(wrapper.find('div').length).toEqual(5);
     })
 
-    it('should have 4 buttons', () => {
+    it('should have 4 answer buttons', () => {
         expect(wrapper.find('button').length).toEqual(4);
     })
 
     it('should have buttons with answers as the value', () => {
         expect(wrapper.find('#Crete').text()).toEqual('Crete');
     })
-
-    
 
     it('should render the question', ()=> {
        expect(wrapper.contains('<h3>Talos, the mythical giant bronze man, was the protector of which island?</h3>'));

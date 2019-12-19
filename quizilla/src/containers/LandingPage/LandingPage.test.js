@@ -6,17 +6,21 @@ import renderer from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
 describe('LandingPage', () =>{
     let wrapper;
+    const mockReset = jest.fn();
     beforeEach(()=>{
-        wrapper = shallow(<LandingPage/>)
+        wrapper = shallow(<LandingPage reset = {mockReset}/>)
     });
 
     it('should match snapshot', () =>{
-        const tree = renderer.create(<Router><LandingPage/></Router>).toJSON();
+        const mockReset = jest.fn();
+        const tree = renderer.create(<Router><LandingPage reset = {mockReset}/></Router>).toJSON();
         expect(tree).toMatchSnapshot();
     })
 
-    it('contains a div', () =>{
-        expect(wrapper.find('div').length).toEqual(1);
+    it('contains a 2 <div/> s, 1 is LandingPageContainer and the other is GameDropdown', () =>{
+        expect(wrapper.find('div').length).toEqual(2);
+        expect(wrapper.find('.LandingPageContainer').length).toEqual(1);
+        expect(wrapper.find('.GameDropdown').length).toEqual(1);
     });
 
     it('should render our navbar', () => {
