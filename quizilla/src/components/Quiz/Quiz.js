@@ -8,18 +8,21 @@ class Quiz extends React.Component{
         this.state= {
             data: [],
             index: 0,
-            score: []
+            score: [],
+            currentPlayer: 0,
+            numberOfPlayers: Number(this.props.players),
+            counter: 0
+            
         }
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.createScoreArray()
         this.apiCall();
     }
 
     createScoreArray = () => {
-        const numberOfPlayers = Number(this.props.players)
-        this.setState({score: Array(numberOfPlayers).fill(0)})
+        this.setState({score: Array(this.state.numberOfPlayers).fill(0)})
     }
 
     apiCall = () => {
@@ -29,7 +32,7 @@ class Quiz extends React.Component{
             this.setState({data: response.data.results})})
     }
 
-    calculateScore = (answer) =>{
+    calculateScore = answer =>{
         console.log("I calculated the score");
         let points;
         if(answer === this.state.data[this.state.index].correct_answer){
@@ -37,27 +40,41 @@ class Quiz extends React.Component{
         } else{
             points = -1;
         }
-        this.setState(prevState => {return ({score: prevState.score + points, index: prevState.index + 1})})
+        this.setState(prevState => {
+            let newScore = [...prevState.score];
+            let questionIncrement = prevState.counter % this.state.numberOfPlayers 
+            newScore[this.state.counter % this.state.numberOfPlayers] += points;
+            return ({score: newScore, counter: prevState.counter + 1, index: prevState.index + questionIncrement})})
     }
 
-    generateQuestion = () => {
+    gameState = () => {
         if(this.state.index === this.props.maxNumberOfQuestions) {
-           let emojis = [<p>&#128563;</p>, <p>&#128513;</p> ];
-            return(<p> You got {this.state.score}/{this.props.maxNumberOfQuestions} {this.state.score < 0? emojis[0] : emojis[1]} </p>)
+            return this.generateResults()
         }
         else if(this.state.data.length !== 0) { 
-            return( <GameBox gameInfo={this.state.data[this.state.index]} 
-            calculateScore = {this.calculateScore}/>) 
+            return this.generateNextQuestion()
         }
         else {
             return;
        }
     }
 
+    generateResults = () => {
+        let emojis = [<p>&#128563;</p>, <p>&#128513;</p> ];
+        return this.state.score.map((score, index)=> {
+            return(<p> Player {index+1} got {score}/{this.props.maxNumberOfQuestions} {score < 0? emojis[0] : emojis[1]} </p>)
+        })
+    }
+
+    generateNextQuestion = () => {
+        return( <GameBox gameInfo={this.state.data[this.state.index]} 
+            calculateScore = {this.calculateScore}/>) 
+    }
+
     render() {
         return (
             <div>
-                {this.generateQuestion()}
+                {this.gameState()}
             </div>
             
         )

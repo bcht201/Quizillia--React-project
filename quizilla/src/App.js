@@ -27,7 +27,7 @@ class App extends React.Component {
     })
   }
 
-  setTotalQuestions = (number) =>{
+  setTotalQuestions = number =>{
     return number > 10 ?  10 : number;
 }
 
