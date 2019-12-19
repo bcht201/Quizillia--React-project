@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import GameBox from '../GameBox/GameBox';
+import './Quiz.css'
 
 class Quiz extends React.Component{
     constructor(props) {
@@ -73,7 +74,7 @@ class Quiz extends React.Component{
     generateNextQuestion = () => {
         return( 
             <div>
-                <p>Current Player: {this.state.counter % this.state.numberOfPlayers + 1}</p>
+                <p className = 'currentPlayer'>Current Player: {this.state.counter % this.state.numberOfPlayers + 1}</p>
                 <GameBox gameInfo={this.state.data[this.state.index]} calculateScore = {this.calculateScore}/>
             </div>) 
     }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {Parser} from 'html-to-react';  
+import './GameBox.css';
 
 const GameBox = (props) => {
     const formatQuestion = () => {
@@ -15,11 +16,17 @@ const GameBox = (props) => {
     }
 
     return(
-        <div>
+        <div className = "questionContainer">
             <h3>{formatQuestion()}</h3>
             {answers.map(answer => {
                 const htmlToReactParser2 = new Parser();
-                return <button value = {answer} id = {answer} onClick={(event)=> onClickHandler(event)}>{htmlToReactParser2.parse(answer)}</button>
+                return <div className = "buttonContainer"> 
+                            <button className = "answerButton" 
+                                value = {answer} 
+                                id = {answer} 
+                                onClick={(event)=> onClickHandler(event)}>{htmlToReactParser2.parse(answer)}
+                            </button>
+                        </div>
             })}
         </div>
     )
