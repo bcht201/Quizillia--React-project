@@ -54,15 +54,15 @@ class App extends React.Component {
       <Router>   
       <div className="App">
         <Link to="/" className="homeButton"><h2>Quizilla</h2></Link>
+        <Switch>
+          <Route path='/quiz' > 
+            {this.quizRoute()}
+          </Route>
+          <Route 
+            exact path="/" 
+          render={(props) => <LandingPage {...props} pickCat={this.launchQuiz} reset={this.resetState}/>} />
+        </Switch>
       </div>
-      <Switch>
-        <Route path='/quiz' > 
-          {this.quizRoute()}
-        </Route>
-        <Route 
-        exact path="/" 
-        render={(props) => <LandingPage {...props} pickCat={this.launchQuiz} reset={this.resetState}/>} />
-      </Switch>
     </Router>
     );
   }

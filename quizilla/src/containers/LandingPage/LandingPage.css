@@ -1,0 +1,26 @@
+.LandingPageContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+.quizButton {
+    padding: 4px;
+    border-radius: 10px;
+    border: solid 2px yellowgreen;
+}
+
+.quizButton:hover{
+    background-color: greenyellow;
+    cursor: pointer;
+}
+
+.GameDropdown {
+    margin-bottom: 5%;
+    margin-top: 20%;
+}
+
+
+
+

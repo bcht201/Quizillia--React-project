@@ -2,6 +2,7 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import {Select, MenuItem} from '@material-ui/core';
 import axios from 'axios';
+import './LandingPage.css'
 
 class LandingPage extends React.Component{
     state = {
@@ -46,49 +47,50 @@ class LandingPage extends React.Component{
 
     render(){
         return (
-            <div>
+            <div className="LandingPageContainer">
+                <div className="GameDropdown">
+                    <Select
+                        labelId="demo-simple-select-placeholder-label-label"
+                        id="demo-simple-select-placeholder-label"
+                        value= {this.state.category}
+                        onChange= {(event) => this.handleChange(event)}
+                        name="chosen_category"
+                        displayEmpty
+                        >
+                            <MenuItem disabled>Pick a category</MenuItem>
+                        {this.state.categories.map(category =>{
+                            return(<MenuItem value={category.id}>{category.name}</MenuItem>)
+                        })}
+                    </Select>
+
+                    <Select
+                        labelId="demo-simple-select-placeholder-label-label"
+                        id="demo-simple-select-placeholder-label"
+                        value= {this.state.category}
+                        onChange= {(event) => this.handleChange(event)}
+                        name="difficulty"
+                        displayEmpty
+                        >
+                            <MenuItem disabled>Pick a difficulty</MenuItem>
+                            <MenuItem value="easy">Easy</MenuItem>
+                            <MenuItem value="medium">Medium</MenuItem>
+                            <MenuItem value="hard">Hard</MenuItem>
+                    </Select>
+
+                    <Select
+                        labelId="demo-simple-select-placeholder-label-label"
+                        id="demo-simple-select-placeholder-label"
+                        value= {this.state.category}
+                        onChange= {(event) => this.handleChange(event)}
+                        name="numberOfPlayers"
+                        displayEmpty
+                        >
+                            <MenuItem disabled>Number of players</MenuItem>
+                            <MenuItem value="1">1</MenuItem>
+                            <MenuItem value="2">2</MenuItem>
+                    </Select>
+                </div>
                 <Link to="/quiz" className="quizButton" onClick={this.onClickHandler}> <h2>Start Quiz!</h2> </Link>
-
-                <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    value= {this.state.category}
-                    onChange= {(event) => this.handleChange(event)}
-                    name="chosen_category"
-                    displayEmpty
-                    >
-                        <MenuItem disabled>Pick a category</MenuItem>
-                    {this.state.categories.map(category =>{
-                        return(<MenuItem value={category.id}>{category.name}</MenuItem>)
-                    })}
-                </Select>
-
-                <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    value= {this.state.category}
-                    onChange= {(event) => this.handleChange(event)}
-                    name="difficulty"
-                    displayEmpty
-                    >
-                        <MenuItem disabled>Pick a difficulty</MenuItem>
-                        <MenuItem value="easy">Easy</MenuItem>
-                        <MenuItem value="medium">Medium</MenuItem>
-                        <MenuItem value="hard">Hard</MenuItem>
-                </Select>
-
-                <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    value= {this.state.category}
-                    onChange= {(event) => this.handleChange(event)}
-                    name="numberOfPlayers"
-                    displayEmpty
-                    >
-                        <MenuItem disabled>Number of players</MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                </Select>
             </div>
         )
     }
