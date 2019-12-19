@@ -60,14 +60,14 @@ class Quiz extends React.Component{
             return this.generateNextQuestion()
         }
         else {
-            return;
+            return <p>LOADING</p>;
        }
     }
 
     generateResults = () => {
         let emojis = [<p>&#128563;</p>, <p>&#128513;</p> ];
         return this.state.score.map((score, index)=> {
-            return(<p> Player {index+1} got {score}/{this.props.maxNumberOfQuestions} {score < 0? emojis[0] : emojis[1]} </p>)
+            return(<p className = "resultsMsg"> Player {index+1} got {score}/{this.props.maxNumberOfQuestions} {score < 0? emojis[0] : emojis[1]} </p>)
         })
     }
 
