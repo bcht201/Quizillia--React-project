@@ -61,7 +61,7 @@ class LandingPage extends React.Component{
                         >
                             <MenuItem className="categoryDropdown1" disabled>Pick a category</MenuItem>
                         {this.state.categories.map(category =>{
-                            return(<MenuItem value={category.id}>{category.name}</MenuItem>)
+                            return(<MenuItem value={category.id} className='categoryItem'>{category.name}</MenuItem>)
                         })}
                     </Select>
 

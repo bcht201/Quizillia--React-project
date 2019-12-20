@@ -37,71 +37,109 @@ describe('LandingPage', () =>{
         expect(global.window.location.pathname).toEqual('/');
     });
 
+    it('should render gameDropdown Menu', () => {
+        wrapper.setState({
+            category: 'ghosts', 
+            categories: [
+                {
+                    id: 0, 
+                    name: 'ghosts'
+                },
+                {
+                    id: 1,
+                    name: 'notghosts'
+                }
+            ]
+        });
+
+        wrapper.update();
+        expect(wrapper.find('#categoryDropdown').length).toEqual(1);
+        
+    })
+
+    it('should update state after handleChange is called', () => {
+        const event = {target: {name: 'chosen_category', value: 'notghosts'}};
+        wrapper.instance().handleChange(event, () => {
+            expect(wrapper.state('chosen_category')).toEqual('notghosts');
+        });
+        const instance = wrapper.instance();
+        const spy = jest.spyOn(instance, 'getQuestionCount');
+        wrapper.setState({
+            difficulty: 'easy',
+            chosen_category: 'honestBurgers'
+        });
+        wrapper.instance().handleChange(event, () => {
+            expect(wrapper.state('chosen_category')).toEqual('notghosts');
+            expect(spy).toHaveBeenCalled();
+        });
+
+    })
+
+    it('should render difficultyDropdown', () => {
+        wrapper.setState({
+            category: 'ghosts', 
+            difficulty: 'easy'
+        });
+        wrapper.update();
+        expect(wrapper.find('#difficultyDropdown').length).toEqual(1);
+        
+    })
+
+    it('should update category on change in category dropDown', () => {
+        const mockReset = jest.fn();
+        let wrapper2 = shallow(<LandingPage reset={mockReset}/>)
+        const event = {target: {name: 'chosen_category', value: 'notghosts'}}
+        wrapper2.find('#categoryDropdown').simulate('change', event, () => {
+            expect(wrapper2.state('chosen_category')).toEqual('notghosts')
+        });
+    })
+
+    it('should update difficulty on change in difficulty select menu', () => {
+        const mockReset = jest.fn();
+        let wrapper3 = shallow(<LandingPage reset={mockReset}/>)
+        const event = {target: {name: 'difficulty', value: 'easy'}}
+        wrapper3.find('#difficultyDropdown').simulate('change', event, () => {
+            expect(wrapper3.state('difficulty')).toEqual('easy')
+        });
+    })
+
+    it('should update players on change in playerDropdown select menu', () => {
+        const mockReset = jest.fn();
+        let wrapper4 = shallow(<LandingPage reset={mockReset}/>)
+        const event = {target: {name: 'numberOfPlayers', value: '1'}}
+        wrapper4.find('#playerDropdown').simulate('change', event, () => {
+            expect(wrapper4.state('numberOfPlayers')).toEqual('1')
+        });
+    })
+
     //STEPS:
     //create mock function 
     //shallow rendered LandingPage and gave it a prop called mockEventHandler
     //simulated a 'change' and on said change gave it mock values
     //now we write expect state to see if mock values are passed on into state after change
-    // it('Should call pickCat (prop function) after setting state', () => {
-    //     const mockEventHandler = jest.fn();
-    //     const mockReset = jest.fn();
-    //     const wrapper2 = mount(<Router>
-    //         <LandingPage handleChange={mockEventHandler} reset = {mockReset} />
-    //         </Router>)
-    //     const event = {target: {
-    //         name: 'chosen_category',
-    //         value: 'val'
-    //     }}
-    //     // wrapper.setProps({onChange : mockEventHandler});
-    //     // wrapper.find('#categoryDropdown').simulate('change', {target: {value: ["val"], name: ["chosen_category"]}})
-    //     wrapper2.find('#categoryDropdown').simulate('change', event);
 
-    //     // wrapper.update();
-    //     // expect(wrapper.state().chosen_category).toEqual('val');
-    //     expect(mockEventHandler.calledOnce).toBe(true);
+    // it('should call assingQuestionCount once', () => {
+    //     const spy = jest.spyOn(LandingPage.prototype, "assignQuestionCount");
+    //     let fakeReset = jest.fn();
+    //     let wrapper2 = mount(<Router><LandingPage reset={fakeReset}/></Router>);
+    //     wrapper2.setState= ({categories: 'ghosts'})
+    //     wrapper2.instance().assignQuestionCount();
+    //     wrapper2.update();
+    //     expect(spy).toHaveBeenCalled();
     // })
 
-    it('should change setstate after onchange', () =>{
-        const fakeCatCall = jest.fn();
-        const mockEvent = {
-            target : {
-                name: "chosen_category",
-                value : "test"
-            }
-        };
-        const expected = {
-            categories:[],
-            chosen_category: "test", 
-            difficulty: null,
-            question_count_data: null,
-            max_questions: null,
-            numberOfPlayers: 1
-        };
-        wrapper.instance().handleChange(mockEvent);
-        expect(wrapper.state()).toEqual(expected);
+    it('should change state and make a function call from props',() => {
+        const fakeFunction = jest.fn();
+        const fakeReset = jest.fn();
+        const wrapper2 = shallow(<LandingPage pickCat={fakeFunction} reset={fakeReset}/>);
+        const fakeData = 'easy';
+        wrapper2.setState({question_count_data: {total_easy_question_count: 12}});
+        wrapper2.instance().assignQuestionCount(fakeData);
+        wrapper2.update();
+        expect(wrapper2.state().max_questions).toEqual(12);
+        expect(fakeFunction).toHaveBeenCalled();
     })
 
-    // it('should display menu items after Api call', () => {
-    //     loadData = async () => {
 
-    //     }
-    // })
-
-    
-
-    // it('should call pickCat propFunction after setting the state', () => {
-    //     wrapper.update();
-    //     wrapper.
-    //     expect(wrapper.find('MenuItem').text()).toEqual('Pick a Category');
-    // })
-
-    it('should redirect to /quiz if a category is selected', () =>{
-        // const wrapper2 = mount(<Router><LandingPage/></Router>);
-        // wrapper2.setState({chosen_category: "entertainment: Whatever you want"});
-        // const link = wrapper2.find(Link);
-        // global.window = {location: {pathname : null}};
-        // link.simulate('click');
-        // expect(global.window.location.pathname).toEqual('/quiz');
-    });
 
 })
