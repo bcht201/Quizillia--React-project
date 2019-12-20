@@ -1,0 +1,24 @@
+.questionContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 60px;
+}
+
+.answerButton{
+    min-width: 50px;
+    margin-bottom: 15px;
+    padding: 4px;
+}
+
+h3 {
+    margin-top: 2%;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+}
