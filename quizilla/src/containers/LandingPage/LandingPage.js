@@ -53,21 +53,21 @@ class LandingPage extends React.Component{
                 <div className="GameDropdown">
                     <Select
                         labelId="demo-simple-select-placeholder-label-label"
-                        id="demo-simple-select-placeholder-label"
+                        id="categoryDropdown"
                         value= {this.state.category}
                         onChange= {(event) => this.handleChange(event)}
                         name="chosen_category"
                         displayEmpty
                         >
-                            <MenuItem disabled>Pick a category</MenuItem>
+                            <MenuItem className="categoryDropdown1" disabled>Pick a category</MenuItem>
                         {this.state.categories.map(category =>{
-                            return(<MenuItem value={category.id}>{category.name}</MenuItem>)
+                            return(<MenuItem value={category.id} className='categoryItem'>{category.name}</MenuItem>)
                         })}
                     </Select>
 
                     <Select
                         labelId="demo-simple-select-placeholder-label-label"
-                        id="demo-simple-select-placeholder-label"
+                        id="difficultyDropdown"
                         value= {this.state.category}
                         onChange= {(event) => this.handleChange(event)}
                         name="difficulty"
@@ -81,7 +81,7 @@ class LandingPage extends React.Component{
 
                     <Select
                         labelId="demo-simple-select-placeholder-label-label"
-                        id="demo-simple-select-placeholder-label"
+                        id="playerDropdown"
                         value= {this.state.category}
                         onChange= {(event) => this.handleChange(event)}
                         name="numberOfPlayers"

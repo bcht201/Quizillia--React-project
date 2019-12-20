@@ -17,9 +17,9 @@ exports[`LandingPage should match snapshot 1`] = `
     >
       <div
         aria-haspopup="listbox"
-        aria-labelledby="demo-simple-select-placeholder-label-label demo-simple-select-placeholder-label"
+        aria-labelledby="demo-simple-select-placeholder-label-label categoryDropdown"
         className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-        id="demo-simple-select-placeholder-label"
+        id="categoryDropdown"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -52,9 +52,9 @@ exports[`LandingPage should match snapshot 1`] = `
     >
       <div
         aria-haspopup="listbox"
-        aria-labelledby="demo-simple-select-placeholder-label-label demo-simple-select-placeholder-label"
+        aria-labelledby="demo-simple-select-placeholder-label-label difficultyDropdown"
         className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-        id="demo-simple-select-placeholder-label"
+        id="difficultyDropdown"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
@@ -87,9 +87,9 @@ exports[`LandingPage should match snapshot 1`] = `
     >
       <div
         aria-haspopup="listbox"
-        aria-labelledby="demo-simple-select-placeholder-label-label demo-simple-select-placeholder-label"
+        aria-labelledby="demo-simple-select-placeholder-label-label playerDropdown"
         className="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-        id="demo-simple-select-placeholder-label"
+        id="playerDropdown"
         onBlur={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
