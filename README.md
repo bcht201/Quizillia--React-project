@@ -41,3 +41,6 @@
 
 ### App Tree
 ![alt text](/map.jpg "App Tree")
+
+### Final App Tree
+![alt text](/final_map.jpg "App Tree Final")
