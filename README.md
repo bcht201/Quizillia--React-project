@@ -39,6 +39,13 @@
 - fixed catergory/ difficulty
 - 10 questions
 
+### Version 2:
+- 1 or 2 players
+- no timer
+- Select category from a list
+- Select difficulty (easy, medium, hard)
+- Up to 10 questions, depends on what is available for the category from the API
+
 ### App Tree
 ![alt text](/map.jpg "App Tree")
 
