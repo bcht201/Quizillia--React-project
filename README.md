@@ -28,7 +28,7 @@
 - As a user, at the end of the game I should be able to see my results on how many I got correct
 - As a user, I should be able to see who won the round
 
-## API categories
+## API calls to https://opentdb.com/api_config.php
 - 1st API call to get categories and ID 
 - 2nd API call to get questions and answers based on input
 
