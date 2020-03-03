@@ -46,8 +46,8 @@
 - Select difficulty (easy, medium, hard)
 - Up to 10 questions, depends on what is available for the category from the API
 
-### App Tree
+### Initial App Structure
 ![alt text](/map.jpg "App Tree")
 
-### Final App Tree
+### Final App Structure
 ![alt text](/final_map.jpg "App Tree Final")

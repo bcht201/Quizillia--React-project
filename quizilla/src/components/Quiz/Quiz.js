@@ -31,25 +31,6 @@ class Quiz extends React.Component{
             this.setState({data: response.data.results})})
     }
 
-    // calculateScore = answer =>{
-    //     let points;
-    //     if(answer === this.state.data[this.state.index].correct_answer){
-    //         points = 1;
-    //     } else{
-    //         points = -1;
-    //     }
-    //     this.setState(prevState => {
-    //         let newScore = [...prevState.score];
-    //         let questionIncrement;
-    //         if(this.state.numberOfPlayers === 1) {
-    //             questionIncrement = 1;
-    //         } else {
-    //             questionIncrement = prevState.counter % this.state.numberOfPlayers
-    //         }
-    //         newScore[this.state.counter % this.state.numberOfPlayers] += points;
-    //         return ({score: newScore, counter: prevState.counter + 1, index: prevState.index + questionIncrement})})
-    // }
-
     nextGameState = answer =>{
         let newScore = this.calculateScore(answer);
         let nextQuestion = this.updateQuestion();
