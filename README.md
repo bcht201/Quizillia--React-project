@@ -33,7 +33,7 @@
 - 2nd API call to get questions and answers based on input
 
 ## Milestones 
-### Version 1: 
+### MVP:
 - 1 player
 - no timer
 - fixed catergory/ difficulty
